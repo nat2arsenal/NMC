@@ -1,0 +1,128 @@
+@import '../utils/colors';
+
+.video-container {
+  position: relative;
+  max-width: 300px;
+  max-height: 600px;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+  border: 1px solid #255369;
+  &:hover {
+    .play-button,
+    .pause-button,
+    .mute-icon {
+      z-index: 1;
+      cursor: pointer;
+    }
+  }
+  video {
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    &:hover {
+      z-index: 0;
+      cursor: pointer;
+    }
+  }
+  .play-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50% -50%);
+    width: 0;
+    height: 0;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-left: 20px solid $F1;
+    &:hover {
+      z-index: 1;
+      cursor: pointer;
+    }
+  }
+  .pause-button {
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50% -50%);
+    width: 20px;
+    height: 20px;
+    div {
+      background-color: $F1;
+      height: 100%;
+      width: 40%;
+    }
+    &:hover {
+      z-index: 1;
+      cursor: pointer;
+    }
+  }
+  .progress-bar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background-color: yellow;
+    height: 2.5px;
+    z-index: 2;
+  }
+
+  .skip-button {
+    position: absolute;
+    bottom: 20px;
+    right: 0;
+    z-index: 1;
+    height: 30px;
+    width: 85px;
+    background-color: #323434;
+    opacity: 0.8;
+    border-style: none;
+    outline: none;
+    display: flex;
+    align-items: center;
+    &:hover {
+      opacity: 1;
+      cursor: pointer;
+    }
+    &--counter {
+      width: 15%;
+      height: 100%;
+      color: #ff0000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    &--text {
+      width: 60%;
+      height: 100%;
+      color: $F1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-weight: 400;
+      font-size: 0.6rem;
+    }
+    &--icon {
+      width: 25%;
+      height: 100%;
+      color: $F1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 0.8rem;
+    }
+  }
+  .mute-icon {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 1;
+    color: $F1;
+  }
+}
