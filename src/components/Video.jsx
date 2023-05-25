@@ -82,7 +82,8 @@ export default function Video() {
             id="nmc-video"
           >
             <source
-              src="./src/assets/Intro video/AdformVideo.mp4"
+              // src="./src/assets/Intro video/AdformVideo.mp4"
+              src="../assets/Intro video/AdformVideo.mp4"
               type="video/mp4"
             />
           </video>
