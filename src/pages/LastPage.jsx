@@ -2,6 +2,7 @@ import { useContext } from 'react';
 import { AppContext } from '../Context';
 import QuestionBox from '../components/QuestionBox';
 import Recommendations from '../components/Recommendations';
+import Delay from '../components/Delay';
 
 export default function LastPage() {
   const { questionMessages } = useContext(AppContext);
@@ -10,9 +11,13 @@ export default function LastPage() {
     <>
       <div className="last-page-container">
         <div className="question-box">
-          <QuestionBox message={questionMessages.message5} />
+          <Delay time={1500} display="typing...">
+            <QuestionBox message={questionMessages.message5} />
+          </Delay>
         </div>
-        <Recommendations />
+        <Delay time={2500} display="">
+          <Recommendations />
+        </Delay>
       </div>
     </>
   );

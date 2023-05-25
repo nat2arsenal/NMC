@@ -8,7 +8,9 @@ export default function SelectionOption({ option }) {
   return (
     <>
       {selectedOption === '' ? null : (
-        <div className="selection-option-container">{option}</div>
+        <div className="selection-option-container">
+          <div className="inner">{option}</div>
+        </div>
       )}
     </>
   );

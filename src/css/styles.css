@@ -128,11 +128,7 @@
   width: 100%;
   height: 300px;
   overflow: hidden;
-  animation-name: appear;
-  animation-duration: 0.5s;
-  animation-timing-function: ease-in-out;
-  animation-fill-mode: both;
-  animation-delay: 1s;
+  animation: appear 0.5s ease-in-out 0.5s both;
 }
 @keyframes appear {
   0% {
@@ -237,6 +233,9 @@
   -o-object-fit: cover;
      object-fit: cover;
 }
+.chat-container header img:hover {
+  cursor: pointer;
+}
 .chat-container main {
   width: 100%;
   height: 440px;
@@ -264,11 +263,7 @@
   border-style: none;
   padding: 4px 50px;
   margin-left: 60px;
-  animation-name: appear;
-  animation-duration: 0.5s;
-  animation-timing-function: ease-in-out;
-  animation-fill-mode: both;
-  animation-delay: 1s;
+  animation: appear 0.5s ease-in-out 0.5s both;
 }
 @keyframes appear {
   0% {
@@ -307,13 +302,6 @@
   overflow: hidden;
   display: flex;
   margin-bottom: 10px;
-}
-.chat-container footer .send-button:hover {
-  cursor: pointer;
-  scale: 1.01;
-}
-.chat-container footer .send-button:active {
-  transform: translateY(-1px);
 }
 .chat-container footer .send-button--icon {
   width: 50px;
@@ -433,11 +421,7 @@
   margin-bottom: 10px;
   margin-left: 45px;
   width: 140px;
-  animation-name: appear;
-  animation-duration: 0.5s;
-  animation-timing-function: ease-in-out;
-  animation-fill-mode: both;
-  animation-delay: 1s;
+  animation: appear 0.5s ease-in-out 0.5s both;
 }
 @keyframes appear {
   0% {
@@ -459,11 +443,7 @@
   display: flex;
   align-items: flex-start;
   margin-bottom: 10px;
-  animation-name: appear;
-  animation-duration: 0.5s;
-  animation-timing-function: ease-in-out;
-  animation-fill-mode: both;
-  animation-delay: 0.5s;
+  animation: appear 0.5s ease-in-out 0.5s both;
 }
 @keyframes appear {
   0% {
@@ -503,11 +483,7 @@
   width: 100%;
   height: 250px;
   position: relative;
-  animation-name: appear;
-  animation-duration: 0.5s;
-  animation-timing-function: ease-in-out;
-  animation-fill-mode: both;
-  animation-delay: 1s;
+  animation: appear 0.5s ease-in-out 0.5s both;
 }
 @keyframes appear {
   0% {
@@ -597,10 +573,16 @@
 }
 
 .selection-option-container {
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.selection-option-container .inner {
   display: flex;
   align-items: center;
   justify-content: center;
-  float: right;
   border-radius: 5px;
   font-weight: 400;
   font-size: 12px;
@@ -610,16 +592,6 @@
   width: 140px;
   background-color: #e57221;
   color: #ffffff;
-  animation: appear 0.5s ease-in-out;
-  transform: scaleY(1);
-}
-@keyframes appear {
-  0% {
-    transform: scaleY(0);
-  }
-  100% {
-    transform: scaleY(1);
-  }
 }
 
 * {

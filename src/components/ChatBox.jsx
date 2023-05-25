@@ -6,6 +6,7 @@ import OptionBox from './OptionBox';
 import LastPage from '../pages/LastPage';
 import { FaRegEnvelope } from 'react-icons/fa';
 import SecondToLastPage from '../pages/SecondToLastPage';
+import Delay from './Delay';
 
 export default function ChatBox() {
   const {
@@ -15,6 +16,7 @@ export default function ChatBox() {
     onLastPage,
     onSecondToLastPage,
     setOnSecondToLastPage,
+    setCloseVideo,
   } = useContext(AppContext);
 
   const handleContinueButton = () => {
@@ -26,7 +28,11 @@ export default function ChatBox() {
       <div className="chat-container">
         <header>
           <div className="logo">
-            <img src="/src/assets/Images/logo.svg" alt="No More Courses Logo" />
+            <img
+              src="/src/assets/Images/logo.svg"
+              alt="No More Courses Logo"
+              onClick={() => setCloseVideo(false)}
+            />
           </div>
         </header>
         <main>
@@ -36,38 +42,63 @@ export default function ChatBox() {
             <SecondToLastPage />
           ) : (
             <div className="messages-container">
-              <QuestionBox message={questionMessages.message1} />
+              <Delay time={2000} display="typing...">
+                <QuestionBox message={questionMessages.message1} />
+              </Delay>
+
               {selectedOption === '' && (
                 <>
-                  <OptionBox option={selectionOptions.option1} />
-                  <OptionBox option={selectionOptions.option2} />
+                  <Delay time={3000} display="">
+                    <OptionBox option={selectionOptions.option1} />
+                    <OptionBox option={selectionOptions.option2} />
+                  </Delay>
                 </>
               )}
 
               <SelectionOption option={selectedOption} />
               {selectedOption === selectionOptions.option1 ? (
                 <>
-                  <QuestionBox message={questionMessages.message2} />
-                  <QuestionBox message={questionMessages.message3} />
-                  <button
-                    className="continue-button"
-                    onClick={handleContinueButton}
-                  >
-                    CONTINUE
-                    <span>
-                      <img
-                        src="./src/assets/Images/arrow-down.svg"
-                        alt="down-arrow"
-                      />
-                    </span>
-                  </button>
+                  <Delay time={500} display="">
+                    <Delay time={1500} display="typing...">
+                      <QuestionBox message={questionMessages.message2} />
+                    </Delay>
+                  </Delay>
+                  <Delay time={3500} display="">
+                    <Delay time={2000} display="typing...">
+                      <QuestionBox message={questionMessages.message3} />
+                    </Delay>
+                  </Delay>
+                  <Delay time={9500} display="">
+                    <button
+                      className="continue-button"
+                      onClick={handleContinueButton}
+                    >
+                      CONTINUE
+                      <span>
+                        <img
+                          src="./src/assets/Images/arrow-down.svg"
+                          alt="down-arrow"
+                        />
+                      </span>
+                    </button>
+                  </Delay>
                 </>
               ) : (
                 selectedOption === selectionOptions.option2 && (
                   <>
-                    <QuestionBox message={questionMessages.message6} />
-                    <QuestionBox message={questionMessages.message7} />
-                    <OptionBox option={selectionOptions.option3} />
+                    <Delay time={1500} display="">
+                      <Delay time={3000} display="typing...">
+                        <QuestionBox message={questionMessages.message6} />
+                      </Delay>
+                    </Delay>
+                    <Delay time={7500} display="">
+                      <Delay time={1500} display="typing...">
+                        <QuestionBox message={questionMessages.message7} />
+                      </Delay>
+                    </Delay>
+                    <Delay time={11000} display="">
+                      <OptionBox option={selectionOptions.option3} />
+                    </Delay>
                   </>
                 )
               )}

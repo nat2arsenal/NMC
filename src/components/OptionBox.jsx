@@ -23,5 +23,5 @@ export default function OptionBox({ option }) {
 }
 
 OptionBox.propTypes = {
-  option: PropTypes.node,
+  option: PropTypes.string.isRequired,
 };

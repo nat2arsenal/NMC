@@ -14,5 +14,5 @@ export default function QuestionBox({ message }) {
 }
 
 QuestionBox.propTypes = {
-  message: PropTypes.node,
+  message: PropTypes.string.isRequired,
 };

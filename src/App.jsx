@@ -10,6 +10,8 @@ function App() {
   const [onLastPage, setOnLastPage] = useState(false);
   const [onSecondToLastPage, setOnSecondToLastPage] = useState(false);
 
+  const [status, setStatus] = useState('');
+
   const selectionOptions = {
     option1: 'I think it does',
     option2: "No it doesn't",
@@ -40,6 +42,8 @@ function App() {
           setOnLastPage,
           onSecondToLastPage,
           setOnSecondToLastPage,
+          status,
+          setStatus,
         }}
       >
         {closeVideo ? <ChatBox /> : <Video />}

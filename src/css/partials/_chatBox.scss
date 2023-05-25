@@ -18,6 +18,9 @@
       height: 80px;
       width: 110px;
       object-fit: cover;
+      &:hover {
+        cursor: pointer;
+      }
     }
   }
 
@@ -45,11 +48,7 @@
         border-style: none;
         padding: 4px 50px;
         margin-left: 60px;
-        animation-name: appear;
-        animation-duration: 0.5s;
-        animation-timing-function: ease-in-out;
-        animation-fill-mode: both;
-        animation-delay: 1s;
+        animation: appear 0.5s ease-in-out 0.5s both;
 
         @keyframes appear {
           0% {
@@ -93,13 +92,7 @@
       overflow: hidden;
       display: flex;
       margin-bottom: 10px;
-      &:hover {
-        cursor: pointer;
-        scale: 1.01;
-      }
-      &:active {
-        transform: translateY(-1px);
-      }
+
       &--icon {
         width: 50px;
         height: 100%;
