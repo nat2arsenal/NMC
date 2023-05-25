@@ -1,0 +1,31 @@
+.carousel-item {
+  width: 190px;
+  height: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0 5px;
+  &:hover {
+    cursor: pointer;
+  }
+  img {
+    width: 190px;
+    height: 190px;
+    object-fit: cover;
+    scale: 1.29;
+  }
+  .divider {
+    width: 190px;
+    height: 3px;
+    background-color: $E1;
+  }
+
+  .caption {
+    background-color: $B1;
+    opacity: 0.8;
+    color: $F1;
+    font-size: 12px;
+    text-align: center;
+    padding: 20px 0;
+  }
+}

@@ -6,11 +6,13 @@ export default function CarouselItem({ item }) {
   const { setOnLastPage } = useContext(AppContext);
 
   return (
-    <div className="carousel-item" onClick={() => setOnLastPage(true)}>
-      <img src={item.image} alt={item.description} />
-      <div className="divider"></div>
-      <div className="caption">{item.description}</div>
-    </div>
+    <>
+      <div className="carousel-item" onClick={() => setOnLastPage(true)}>
+        <img src={item.image} alt={item.description} />
+        <div className="divider"></div>
+        <div className="caption">{item.description}</div>
+      </div>
+    </>
   );
 }
 

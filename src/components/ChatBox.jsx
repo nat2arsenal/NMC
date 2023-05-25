@@ -37,12 +37,12 @@ export default function ChatBox() {
           ) : (
             <div className="messages-container">
               <QuestionBox message={questionMessages.message1} />
-              {selectedOption === '' ? (
+              {selectedOption === '' && (
                 <>
                   <OptionBox option={selectionOptions.option1} />
                   <OptionBox option={selectionOptions.option2} />
                 </>
-              ) : null}
+              )}
 
               <SelectionOption option={selectedOption} />
               {selectedOption === selectionOptions.option1 ? (
@@ -62,13 +62,15 @@ export default function ChatBox() {
                     </span>
                   </button>
                 </>
-              ) : selectedOption === selectionOptions.option2 ? (
-                <>
-                  <QuestionBox message={questionMessages.message6} />
-                  <QuestionBox message={questionMessages.message7} />
-                  <OptionBox option={selectionOptions.option3} />
-                </>
-              ) : null}
+              ) : (
+                selectedOption === selectionOptions.option2 && (
+                  <>
+                    <QuestionBox message={questionMessages.message6} />
+                    <QuestionBox message={questionMessages.message7} />
+                    <OptionBox option={selectionOptions.option3} />
+                  </>
+                )
+              )}
             </div>
           )}
         </main>
@@ -79,7 +81,7 @@ export default function ChatBox() {
                 <button>Contact Us</button>
               </div>
               <div className="button-container">
-                <button>Visit Out Website</button>
+                <button>Visit Our Website</button>
               </div>
               <div className="social-icons-container">
                 <div className="social-icons">

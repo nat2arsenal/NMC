@@ -1,10 +1,10 @@
 import PropTypes from 'prop-types';
-import { useContext } from 'react';
+import REACT from 'react';
 import { AppContext } from '../Context';
 
 export default function OptionBox({ option }) {
   const { setSelectedOption, selectionOptions, setOnLastPage } =
-    useContext(AppContext);
+    REACT.useContext(AppContext);
 
   const handleSelect = () => {
     setSelectedOption(option);

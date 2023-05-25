@@ -11,6 +11,7 @@
   align-items: center;
   z-index: 2;
   border: 1px solid #255369;
+  overflow: hidden;
   &:hover {
     .play-button,
     .pause-button,

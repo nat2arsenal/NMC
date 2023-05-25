@@ -1,6 +1,6 @@
 import { useState, useRef, useContext, useEffect } from 'react';
 
-import { FaStepForward, FaVolumeMute } from 'react-icons/fa';
+import { FaStepForward, FaVolumeUp, FaVolumeMute } from 'react-icons/fa';
 import { AppContext } from '../Context';
 
 export default function Video() {
@@ -8,15 +8,43 @@ export default function Video() {
   const [percentage, setPercentage] = useState(0);
   const [showSkipButton, setShowSkipButton] = useState(false);
   const [counter, setCounter] = useState(3);
+  const [mute, setMute] = useState(true);
 
   const { closeVideo, setCloseVideo } = useContext(AppContext);
   const videoRef = useRef();
 
+  //   useEffect to trigger another useEffect with the state 'playing' as dependency
+  useEffect(() => {
+    setPlaying(true);
+  }, []);
+
+  //   video progress bar update; identifying if skip button should appear; update skip button timer
+  useEffect(() => {
+    let videoTimers = getVideoTimers(videoRef);
+
+    if (percentage < 100 && playing === true) {
+      setTimeout(() => setPercentage((prev) => (prev += 1.5)), 145);
+    }
+
+    if (videoTimers.duration - videoTimers.current < 3.5) {
+      setShowSkipButton(true);
+      setCounter(Math.round(videoTimers.duration - videoTimers.current));
+    }
+  }, [playing, percentage, counter]);
+
+  // function to get video timers
+  const getVideoTimers = (video) => {
+    return {
+      current: video.current.currentTime,
+      duration: video.current.duration,
+    };
+  };
+
+  //   function to handle video click
   const handleVideoClick = () => {
     setPlaying(!playing);
-
     playing ? videoRef.current.pause() : videoRef.current.play();
-    if (videoRef.current.currentTime < 0.01) {
+    if (videoRef.current.currentTime === 0) {
       setPercentage(0);
       setShowSkipButton(false);
       setCounter(3);
@@ -26,8 +54,9 @@ export default function Video() {
   };
 
   //   function to handle video ending
-  const handleVideoDone = () => {
+  const handleVideoEnd = () => {
     setPlaying(false);
+    setCloseVideo(true);
   };
 
   //   function to handle clicking of skip button
@@ -35,48 +64,38 @@ export default function Video() {
     setCloseVideo(true);
   };
 
-  //   useEffect to trigger another useEffect with the state 'playing' as dependency
-  useEffect(() => {
-    setPlaying(true);
-  }, []);
-
-  //   video progress bar update; identifying if skip button should appear
-  useEffect(() => {
-    if (percentage < 100 && playing === true) {
-      setTimeout(() => setPercentage((prev) => (prev += 1.5)), 124);
-    }
-
-    if (percentage > 63) {
-      setShowSkipButton(true);
-    }
-  }, [playing, percentage]);
-
-  //   skip button counter update
-  useEffect(() => {
-    if (showSkipButton && counter > 0) {
-      setTimeout(() => setCounter(counter - 1), 1000);
-    }
-  }, [showSkipButton, counter]);
+  // function to handle clicking of speaker icon
+  const handleVideoSound = () => {
+    setMute(!mute);
+  };
 
   return (
     <>
       {closeVideo ? null : (
         <div className="video-container">
           <video
-            autoPlay
-            muted
+            autoPlay={playing}
+            muted={mute}
             onClick={handleVideoClick}
             ref={videoRef}
-            onEnded={handleVideoDone}
+            onEnded={handleVideoEnd}
+            id="nmc-video"
           >
             <source
               src="/src/assets/Intro video/AdformVideo.mp4"
               type="video/mp4"
             />
           </video>
-          <div className="mute-icon" onClick={handleVideoClick}>
-            <FaVolumeMute />
-          </div>
+          {mute ? (
+            <div className="mute-icon" onClick={handleVideoSound}>
+              <FaVolumeMute />
+            </div>
+          ) : (
+            <div className="mute-icon" onClick={handleVideoSound}>
+              <FaVolumeUp />
+            </div>
+          )}
+
           <div
             className="progress-bar"
             style={{
