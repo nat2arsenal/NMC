@@ -29,7 +29,7 @@ export default function ChatBox() {
         <header>
           <div className="logo">
             <img
-              src="/src/assets/Images/logo.svg"
+              src="./src/assets/Images/logo.svg"
               alt="No More Courses Logo"
               onClick={() => setCloseVideo(false)}
             />
@@ -152,7 +152,7 @@ export default function ChatBox() {
           ) : (
             <div className="send-button">
               <div className="send-button--icon">
-                <img src="/src/assets/Images/send-icon.svg" alt="send" />
+                <img src="./src/assets/Images/send-icon.svg" alt="send" />
               </div>
               <div className="send-button--text">choose the options</div>
             </div>
