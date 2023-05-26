@@ -5,7 +5,7 @@ export default function QuestionBox({ message }) {
     <>
       <div className="question-box-container">
         <div className="avatar">
-          <img src="./src/assets/Images/chat-avatar.png" alt="chat-avatar" />
+          <img src="/assets/Images/chat-avatar.png" alt="chat-avatar" />
         </div>
         <div className="message">{message}</div>
       </div>

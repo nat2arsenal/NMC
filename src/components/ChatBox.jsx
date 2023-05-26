@@ -29,7 +29,7 @@ export default function ChatBox() {
         <header>
           <div className="logo">
             <img
-              src="./src/assets/Images/logo.svg"
+              src="/assets/Images/logo.svg"
               alt="No More Courses Logo"
               onClick={() => setCloseVideo(false)}
             />
@@ -76,7 +76,7 @@ export default function ChatBox() {
                       CONTINUE
                       <span>
                         <img
-                          src="./src/assets/Images/arrow-down.svg"
+                          src="/assets/Images/arrow-down.svg"
                           alt="down-arrow"
                         />
                       </span>
@@ -116,28 +116,22 @@ export default function ChatBox() {
               </div>
               <div className="social-icons-container">
                 <div className="social-icons">
+                  <img src="/assets/Social Icons/1.png" alt="fb-icon"></img>
                   <img
-                    src="./src/assets/Social Icons/1.png"
-                    alt="fb-icon"
-                  ></img>
-                  <img
-                    src="./src/assets/Social Icons/2.png"
+                    src="/assets/Social Icons/2.png"
                     alt="linkedin-icon"
                   ></img>
                   <img
-                    src="./src/assets/Social Icons/3.png"
+                    src="/assets/Social Icons/3.png"
                     alt="twitter-icon"
                   ></img>
                   <img
-                    src="./src/assets/Social Icons/4.png"
+                    src="/assets/Social Icons/4.png"
                     alt="instagram-icon"
                   ></img>
+                  <img src="/assets/Social Icons/5.png" alt="wifi-icon"></img>
                   <img
-                    src="./src/assets/Social Icons/5.png"
-                    alt="wifi-icon"
-                  ></img>
-                  <img
-                    src="./src/assets/Social Icons/6.png"
+                    src="/assets/Social Icons/6.png"
                     alt="youtube-icon"
                   ></img>
                 </div>
@@ -152,7 +146,7 @@ export default function ChatBox() {
           ) : (
             <div className="send-button">
               <div className="send-button--icon">
-                <img src="./src/assets/Images/send-icon.svg" alt="send" />
+                <img src="/assets/Images/send-icon.svg" alt="send" />
               </div>
               <div className="send-button--text">choose the options</div>
             </div>

@@ -6,19 +6,19 @@ export default function Carousel() {
 
   const items = [
     {
-      image: './src/assets/Carousel Images/4.png',
+      image: '/assets/Carousel Images/4.png',
       description: 'Business Ethics',
     },
     {
-      image: './src/assets/Carousel Images/5.png',
+      image: '/assets/Carousel Images/5.png',
       description: 'Business Ethics',
     },
     {
-      image: './src/assets/Carousel Images/6.png',
+      image: '/assets/Carousel Images/6.png',
       description: 'Business Ethics',
     },
     {
-      image: './src/assets/Carousel Images/7.png',
+      image: '/assets/Carousel Images/7.png',
       description: 'Business Ethics',
     },
   ];
@@ -48,7 +48,7 @@ export default function Carousel() {
             updateIndex(activeIndex + 1);
           }}
         >
-          <img src="./src/assets/Images/arrow-down.svg" alt="right-arrow" />
+          <img src="/assets/Images/arrow-down.svg" alt="right-arrow" />
         </button>
         <button
           className="left-arrow"
@@ -56,7 +56,7 @@ export default function Carousel() {
             updateIndex(activeIndex - 1);
           }}
         >
-          <img src="./src/assets/Images/arrow-down.svg" alt="left-arrow" />
+          <img src="/assets/Images/arrow-down.svg" alt="left-arrow" />
         </button>
       </div>
     </>
