@@ -153,7 +153,6 @@ export default function ChatBox() {
           )}
         </footer>
       </div>
-      ;
     </>
   );
 }
