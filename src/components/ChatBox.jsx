@@ -16,11 +16,20 @@ export default function ChatBox() {
     onLastPage,
     onSecondToLastPage,
     setOnSecondToLastPage,
+    setOnLastPage,
     setCloseVideo,
+    setSelectedOption,
   } = useContext(AppContext);
 
   const handleContinueButton = () => {
     setOnSecondToLastPage(true);
+  };
+
+  const handleLogoClick = () => {
+    setCloseVideo(false);
+    setOnSecondToLastPage(false);
+    setOnLastPage(false);
+    setSelectedOption('');
   };
 
   return (
@@ -31,7 +40,7 @@ export default function ChatBox() {
             <img
               src="/assets/Images/logo.svg"
               alt="No More Courses Logo"
-              onClick={() => setCloseVideo(false)}
+              onClick={handleLogoClick}
             />
           </div>
         </header>
@@ -68,7 +77,7 @@ export default function ChatBox() {
                       <QuestionBox message={questionMessages.message3} />
                     </Delay>
                   </Delay>
-                  <Delay time={9500} display="">
+                  <Delay time={7500} display="">
                     <button
                       className="continue-button"
                       onClick={handleContinueButton}
