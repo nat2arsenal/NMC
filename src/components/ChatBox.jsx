@@ -1,35 +1,36 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import QuestionBox from './QuestionBox';
 import SelectionOption from './SelectionOption';
 import { AppContext } from '../Context';
 import OptionBox from './OptionBox';
-import LastPage from '../pages/LastPage';
 import { FaRegEnvelope } from 'react-icons/fa';
-import SecondToLastPage from '../pages/SecondToLastPage';
 import Delay from './Delay';
+import Carousel from './Carousel';
+import Recommendations from './Recommendations';
 
 export default function ChatBox() {
-  const {
-    selectedOption,
-    selectionOptions,
-    questionMessages,
-    onLastPage,
-    onSecondToLastPage,
-    setOnSecondToLastPage,
-    setOnLastPage,
-    setCloseVideo,
-    setSelectedOption,
-  } = useContext(AppContext);
+  const { state, dispatch } = useContext(AppContext);
+  const [onBottom, setOnBottom] = useState(false);
 
   const handleContinueButton = () => {
-    setOnSecondToLastPage(true);
+    dispatch({ type: 'SECOND_TO_LAST_SECTION' });
+    const element = document.getElementById('chatbox');
+    setTimeout(() => element.scrollTo(0, 318), 50);
   };
 
   const handleLogoClick = () => {
-    setCloseVideo(false);
-    setOnSecondToLastPage(false);
-    setOnLastPage(false);
-    setSelectedOption('');
+    dispatch({ type: 'REFRESH_PAGE' });
+  };
+
+  const handleScroll = (e) => {
+    const target = e.target;
+
+    if (target.scrollHeight - target.scrollTop < target.clientHeight + 1) {
+      setOnBottom(true);
+      // console.log('bottom!');
+    } else {
+      setOnBottom(false);
+    }
   };
 
   return (
@@ -45,85 +46,118 @@ export default function ChatBox() {
           </div>
         </header>
         <main>
-          {onLastPage ? (
-            <LastPage />
-          ) : onSecondToLastPage ? (
-            <SecondToLastPage />
-          ) : (
-            <div className="messages-container">
-              <Delay time={2000} display="typing...">
-                <QuestionBox message={questionMessages.message1} />
-              </Delay>
+          <div
+            className="messages-container"
+            id="chatbox"
+            onScroll={handleScroll}
+          >
+            <Delay time={2000} display="typing...">
+              <QuestionBox message={state.questionMessages.message1} />
+            </Delay>
 
-              {selectedOption === '' && (
-                <>
-                  <Delay time={3000} display="">
-                    <OptionBox option={selectionOptions.option1} />
-                    <OptionBox option={selectionOptions.option2} />
+            {state.selectedOption === '' && (
+              <>
+                <Delay time={3000}>
+                  <OptionBox option={state.selectionOptions.option1} />
+                  <OptionBox option={state.selectionOptions.option2} />
+                </Delay>
+              </>
+            )}
+            <SelectionOption option={state.selectedOption} />
+            {state.selectedOption === state.selectionOptions.option1 ? (
+              <>
+                <Delay time={500}>
+                  <Delay time={1500} display="typing...">
+                    <QuestionBox message={state.questionMessages.message2} />
                   </Delay>
-                </>
-              )}
-
-              <SelectionOption option={selectedOption} />
-              {selectedOption === selectionOptions.option1 ? (
+                </Delay>
+                <Delay time={3500}>
+                  <Delay time={2000} display="typing...">
+                    <QuestionBox message={state.questionMessages.message3} />
+                  </Delay>
+                </Delay>
+                <Delay time={7500}>
+                  <button
+                    type="button"
+                    className="continue-button"
+                    onClick={handleContinueButton}
+                  >
+                    CONTINUE
+                    <span>
+                      <img
+                        src="/assets/Images/arrow-down.svg"
+                        alt="down-arrow"
+                      />
+                    </span>
+                  </button>
+                </Delay>
+              </>
+            ) : (
+              state.selectedOption !== '' && (
                 <>
-                  <Delay time={500} display="">
+                  <Delay time={1500}>
+                    <Delay time={3000} display="typing...">
+                      <QuestionBox message={state.questionMessages.message6} />
+                    </Delay>
+                  </Delay>
+                  <Delay time={7500}>
                     <Delay time={1500} display="typing...">
-                      <QuestionBox message={questionMessages.message2} />
+                      <QuestionBox message={state.questionMessages.message7} />
                     </Delay>
                   </Delay>
-                  <Delay time={3500} display="">
-                    <Delay time={2000} display="typing...">
-                      <QuestionBox message={questionMessages.message3} />
-                    </Delay>
-                  </Delay>
-                  <Delay time={7500} display="">
-                    <button
-                      className="continue-button"
-                      onClick={handleContinueButton}
-                    >
-                      CONTINUE
-                      <span>
-                        <img
-                          src="/assets/Images/arrow-down.svg"
-                          alt="down-arrow"
-                        />
-                      </span>
-                    </button>
+                  <Delay time={11000}>
+                    <OptionBox option={state.selectionOptions.option3} />
                   </Delay>
                 </>
-              ) : (
-                selectedOption === selectionOptions.option2 && (
-                  <>
-                    <Delay time={1500} display="">
-                      <Delay time={3000} display="typing...">
-                        <QuestionBox message={questionMessages.message6} />
-                      </Delay>
-                    </Delay>
-                    <Delay time={7500} display="">
-                      <Delay time={1500} display="typing...">
-                        <QuestionBox message={questionMessages.message7} />
-                      </Delay>
-                    </Delay>
-                    <Delay time={11000} display="">
-                      <OptionBox option={selectionOptions.option3} />
-                    </Delay>
-                  </>
-                )
-              )}
-            </div>
-          )}
+              )
+            )}
+            {state.onSecondToLastSection && (
+              <section
+                className={
+                  state.onLastSection
+                    ? 'second-to-last-section-container'
+                    : 'second-to-last-section-container--extended'
+                }
+              >
+                <div className="question-box">
+                  <Delay time={1500} display="typing...">
+                    <QuestionBox message={state.questionMessages.message4} />
+                  </Delay>
+                </div>
+                <Delay time={2500} display="">
+                  <Carousel />
+                </Delay>
+              </section>
+            )}
+            {state.onLastSection && (
+              <section className="last-section-container">
+                <div className="question-box">
+                  <Delay time={1500} display="typing...">
+                    <QuestionBox message={state.questionMessages.message5} />
+                  </Delay>
+                </div>
+                <Delay time={2500} display="">
+                  <Recommendations />
+                </Delay>
+
+                <Delay time={4000} display="">
+                  <div className="button-container">
+                    <button>Contact Us</button>
+                  </div>
+                </Delay>
+                <Delay time={5000} display="">
+                  <div className="button-container">
+                    <button>Visit Our Website</button>
+                  </div>
+                </Delay>
+              </section>
+            )}
+          </div>
         </main>
         <footer>
-          {onLastPage ? (
-            <div className="last-page-footer">
-              <div className="button-container">
-                <button>Contact Us</button>
-              </div>
-              <div className="button-container">
-                <button>Visit Our Website</button>
-              </div>
-              <div className="social-icons-container">
+          {state.onLastSection && onBottom ? (
+            <div className="last-section-footer">
+              <div className="last-section-footer--inner">
                 <div className="social-icons">
                   <img src="/assets/Social Icons/1.png" alt="fb-icon"></img>
                   <img

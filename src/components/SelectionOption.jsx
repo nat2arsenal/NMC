@@ -3,11 +3,11 @@ import { useContext } from 'react';
 import { AppContext } from '../Context';
 
 export default function SelectionOption({ option }) {
-  const { selectedOption } = useContext(AppContext);
+  const { state } = useContext(AppContext);
 
   return (
     <>
-      {selectedOption === '' ? null : (
+      {state.selectedOption === '' ? null : (
         <div className="selection-option-container">
           <div className="inner">{option}</div>
         </div>

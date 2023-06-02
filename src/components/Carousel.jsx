@@ -36,14 +36,15 @@ export default function Carousel() {
       <div className="carousel-container">
         <div
           className="inner"
-          style={{ transform: `translate(-${activeIndex * 67}%)` }}
+          style={{ transform: `translate(-${activeIndex * 71}%)` }}
         >
           {items.map((item, index) => {
             return <CarouselItem item={item} key={index} />;
           })}
         </div>
         <button
-          className="right-arrow"
+          type="button"
+          className="arrow-button arrow-button--right"
           onClick={() => {
             updateIndex(activeIndex + 1);
           }}
@@ -51,7 +52,8 @@ export default function Carousel() {
           <img src="/assets/Images/arrow-down.svg" alt="right-arrow" />
         </button>
         <button
-          className="left-arrow"
+          type="button"
+          className="arrow-button arrow-button--left"
           onClick={() => {
             updateIndex(activeIndex - 1);
           }}

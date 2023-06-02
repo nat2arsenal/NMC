@@ -125,8 +125,8 @@
 }
 
 .carousel-container {
+  position: relative;
   width: 100%;
-  height: 300px;
   overflow: hidden;
   animation: appear 0.5s ease-in-out 0.5s both;
 }
@@ -139,14 +139,15 @@
   }
 }
 .carousel-container .inner {
-  white-space: nowrap;
   transition: transform 0.5s ease-in-out;
   display: flex;
   padding: 5px;
+  margin-right: 15px;
   position: relative;
 }
-.carousel-container button {
+.carousel-container .arrow-button {
   position: absolute;
+  top: 45%;
   width: 30px;
   height: 30px;
   border-radius: 20px;
@@ -154,24 +155,26 @@
   outline: none;
   border-style: none;
 }
-.carousel-container button:hover {
+.carousel-container .arrow-button:hover {
   cursor: pointer;
+  transform: translateY(-1px);
 }
-.carousel-container .right-arrow {
-  top: 50%;
-  right: 10px;
+.carousel-container .arrow-button:active {
+  transform: translateY(-2px);
 }
-.carousel-container .right-arrow img {
+.carousel-container .arrow-button--right {
+  right: 15px;
+}
+.carousel-container .arrow-button--right img {
   height: 100%;
   width: 100%;
   scale: 0.7;
   transform: rotate(-90deg);
 }
-.carousel-container .left-arrow {
-  top: 50%;
+.carousel-container .arrow-button--left {
   left: 10px;
 }
-.carousel-container .left-arrow img {
+.carousel-container .arrow-button--left img {
   height: 100%;
   width: 100%;
   scale: 0.7;
@@ -184,7 +187,9 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin: 0 5px;
+  margin: 0 5.5px;
+  border: none;
+  outline: none;
 }
 .carousel-item:hover {
   cursor: pointer;
@@ -208,6 +213,7 @@
   font-size: 12px;
   text-align: center;
   padding: 20px 0;
+  width: 190px;
 }
 
 .chat-container {
@@ -245,8 +251,8 @@
   height: 100%;
   width: 100%;
   overflow-y: scroll;
-  padding: 20px 15px 20px 15px;
-  /* Hide scrollbar for IE, Edge and Firefox */
+  padding-block: 20px;
+  scroll-behavior: smooth;
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
 }
@@ -262,7 +268,7 @@
   outline: none;
   border-style: none;
   padding: 4px 50px;
-  margin-left: 60px;
+  margin-left: 75px;
   animation: appear 0.5s ease-in-out 0.5s both;
 }
 @keyframes appear {
@@ -285,15 +291,63 @@
 .chat-container main .messages-container .continue-button:active {
   transform: translateY(-1px);
 }
+.chat-container main .messages-container .last-section-container {
+  width: 100%;
+  height: 420px;
+}
+.chat-container main .messages-container .last-section-container .button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-block: 11px;
+}
+.chat-container main .messages-container .last-section-container .button-container button {
+  background-color: #e57221;
+  color: #ffffff;
+  text-align: center;
+  outline: none;
+  border-style: none;
+  border-radius: 5px;
+  font-size: 15px;
+  width: 70%;
+  height: 20%;
+  padding: 10px;
+}
+.chat-container main .messages-container .last-section-container .button-container button:hover {
+  cursor: pointer;
+  scale: 1.01;
+}
+.chat-container main .messages-container .last-section-container .button-container button:active {
+  transform: translateY(-1px);
+}
+.chat-container main .messages-container .second-to-last-section-container {
+  width: 100%;
+  height: 350px;
+  overflow: hidden;
+}
+.chat-container main .messages-container .second-to-last-section-container .question-box {
+  margin-top: 10px;
+}
+.chat-container main .messages-container .second-to-last-section-container--extended {
+  width: 100%;
+  height: 440px;
+  overflow: hidden;
+}
+.chat-container main .messages-container .second-to-last-section-container--extended .question-box {
+  margin-top: 10px;
+}
 .chat-container main .messages-container::-webkit-scrollbar {
   display: none;
 }
 .chat-container footer {
   width: 100%;
+  height: 65px;
   position: absolute;
   left: 0;
   bottom: 0;
-  padding: 0 10px 0 10px;
+  padding-inline: 10px;
+  display: flex;
+  align-items: flex-end;
 }
 .chat-container footer .send-button {
   width: 100%;
@@ -326,45 +380,20 @@
   text-transform: uppercase;
   color: #ffffff;
 }
-.chat-container footer .last-page-footer {
-  height: 165px;
+.chat-container footer .last-section-footer {
+  height: 100%;
   width: 100%;
   padding: 7px;
 }
-.chat-container footer .last-page-footer .button-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 7px;
-}
-.chat-container footer .last-page-footer .button-container button {
-  background-color: #e57221;
-  color: #ffffff;
-  text-align: center;
-  outline: none;
-  border-style: none;
-  border-radius: 5px;
-  font-size: 15px;
-  width: 80%;
-  height: 20%;
-  padding: 10px;
-}
-.chat-container footer .last-page-footer .button-container button:hover {
-  cursor: pointer;
-  scale: 1.01;
-}
-.chat-container footer .last-page-footer .button-container button:active {
-  transform: translateY(-1px);
-}
-.chat-container footer .last-page-footer .social-icons-container {
-  height: 40%;
+.chat-container footer .last-section-footer--inner {
+  height: 100%;
   width: 100%;
   position: absolute;
   bottom: 0;
   left: 0;
   background-color: #dedede;
 }
-.chat-container footer .last-page-footer .social-icons-container .social-icons {
+.chat-container footer .last-section-footer--inner .social-icons {
   width: 100%;
   height: 70%;
   display: flex;
@@ -372,39 +401,39 @@
   justify-content: space-between;
   padding: 0 30px;
 }
-.chat-container footer .last-page-footer .social-icons-container .social-icons img {
+.chat-container footer .last-section-footer--inner .social-icons img {
   height: 30px;
   width: 30px;
 }
-.chat-container footer .last-page-footer .social-icons-container .social-icons img:hover {
+.chat-container footer .last-section-footer--inner .social-icons img:hover {
   cursor: pointer;
   scale: 1.1;
 }
-.chat-container footer .last-page-footer .social-icons-container .social-icons img:active {
+.chat-container footer .last-section-footer--inner .social-icons img:active {
   transform: translateY(-1px);
 }
-.chat-container footer .last-page-footer .social-icons-container .email-container {
+.chat-container footer .last-section-footer--inner .email-container {
   height: 30%;
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.chat-container footer .last-page-footer .social-icons-container .email-container .envelope-icon {
+.chat-container footer .last-section-footer--inner .email-container .envelope-icon {
   color: #e57221;
   margin-right: 3px;
 }
-.chat-container footer .last-page-footer .social-icons-container .email-container p {
+.chat-container footer .last-section-footer--inner .email-container p {
   display: flex;
   font-size: 10px;
   color: #000000;
   margin-bottom: 5px;
 }
-.chat-container footer .last-page-footer .social-icons-container .email-container:hover {
+.chat-container footer .last-section-footer--inner .email-container:hover {
   cursor: pointer;
   scale: 1.05;
 }
-.chat-container footer .last-page-footer .social-icons-container .email-container:active {
+.chat-container footer .last-section-footer--inner .email-container:active {
   transform: translateY(-1px);
 }
 
@@ -419,7 +448,7 @@
   color: #e57221;
   padding: 10px;
   margin-bottom: 10px;
-  margin-left: 45px;
+  margin-left: 60px;
   width: 140px;
   animation: appear 0.5s ease-in-out 0.5s both;
 }
@@ -443,6 +472,7 @@
   display: flex;
   align-items: flex-start;
   margin-bottom: 10px;
+  margin-inline: 15px;
   animation: appear 0.5s ease-in-out 0.5s both;
 }
 @keyframes appear {
@@ -588,7 +618,7 @@
   font-size: 12px;
   padding: 10px;
   margin-bottom: 10px;
-  margin-right: 4px;
+  margin-right: 19px;
   width: 140px;
   background-color: #e57221;
   color: #ffffff;
@@ -598,7 +628,6 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  scroll-behavior: smooth;
 }
 
 body {
@@ -608,21 +637,4 @@ body {
   justify-content: center;
   align-items: center;
   font-family: "Montserrat", sans-serif;
-}
-
-.last-page-container {
-  width: 100%;
-  height: 440px;
-}
-.last-page-container .question-box {
-  padding: 10px 15px 0px 15px;
-}
-
-.second-to-last-page-container {
-  width: 100%;
-  height: 440px;
-  overflow: hidden;
-}
-.second-to-last-page-container .question-box {
-  padding: 10px 15px 0px 15px;
 }/*# sourceMappingURL=styles.css.map */

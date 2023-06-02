@@ -10,7 +10,7 @@ export default function Video() {
   const [counter, setCounter] = useState(3);
   const [mute, setMute] = useState(true);
 
-  const { closeVideo, setCloseVideo } = useContext(AppContext);
+  const { state, dispatch } = useContext(AppContext);
   const videoRef = useRef();
 
   //   useEffect to trigger another useEffect with the state 'playing' as dependency
@@ -23,7 +23,7 @@ export default function Video() {
     let videoTimers = getVideoTimers(videoRef);
 
     if (percentage < 100 && playing === true) {
-      setTimeout(() => setPercentage((prev) => (prev += 1.5)), 145);
+      setTimeout(() => setPercentage((prev) => (prev += 1.5)), 130);
     }
 
     if (videoTimers.duration - videoTimers.current < 3.5) {
@@ -56,12 +56,12 @@ export default function Video() {
   //   function to handle video ending
   const handleVideoEnd = () => {
     setPlaying(false);
-    setCloseVideo(true);
+    dispatch({ type: 'CLOSE_VIDEO' });
   };
 
   //   function to handle clicking of skip button
   const handleSkip = () => {
-    setCloseVideo(true);
+    dispatch({ type: 'CLOSE_VIDEO' });
   };
 
   // function to handle clicking of speaker icon
@@ -71,7 +71,7 @@ export default function Video() {
 
   return (
     <>
-      {closeVideo ? null : (
+      {state.closeVideo ? null : (
         <div className="video-container">
           <video
             autoPlay={playing}
@@ -111,7 +111,7 @@ export default function Video() {
             <div className="play-button"></div>
           )}
           {showSkipButton ? (
-            <button className="skip-button" onClick={handleSkip}>
+            <button type="button" className="skip-button" onClick={handleSkip}>
               <div className="skip-button--counter">
                 {counter > 0 ? `${counter}` : null}
               </div>

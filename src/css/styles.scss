@@ -14,7 +14,6 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  scroll-behavior: smooth;
 }
 
 body {
@@ -25,24 +24,3 @@ body {
   align-items: center;
   font-family: 'Montserrat', sans-serif;
 }
-
-// last-page-container
-.last-page-container {
-  width: 100%;
-  height: 440px;
-  .question-box {
-    padding: 10px 15px 0px 15px;
-  }
-}
-// end of last-page-container
-
-// second-to-last-page-container
-.second-to-last-page-container {
-  width: 100%;
-  height: 440px;
-  overflow: hidden;
-  .question-box {
-    padding: 10px 15px 0px 15px;
-  }
-}
-// end of second-last-page-container

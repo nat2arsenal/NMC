@@ -1,23 +1,39 @@
 import PropTypes from 'prop-types';
-import REACT from 'react';
+import { useContext, useState } from 'react';
 import { AppContext } from '../Context';
+import SelectionOption from './SelectionOption';
 
 export default function OptionBox({ option }) {
-  const { setSelectedOption, selectionOptions, setOnLastPage } =
-    REACT.useContext(AppContext);
+  // const { setSelectedOption, selectionOptions, setOnLastPage } =
+  //   useContext(AppContext);
+
+  const { state, dispatch } = useContext(AppContext);
+  const [option3Clicked, setOption3Clicked] = useState(false);
 
   const handleSelect = () => {
-    setSelectedOption(option);
-    if (option === selectionOptions.option3) {
-      setOnLastPage(true);
+    if (option === state.selectionOptions.option3) {
+      dispatch({ type: 'LAST_SECTION' });
+      setOption3Clicked(true);
+      const element = document.getElementById('chatbox');
+      setTimeout(() => element.scrollTo(0, 688), 500);
+    } else {
+      dispatch({ type: 'SELECT_OPTION', payload: option });
     }
   };
 
   return (
     <>
-      <button className="option-box-container" onClick={handleSelect}>
-        {option}
-      </button>
+      {option3Clicked ? (
+        <SelectionOption option={state.selectionOptions.option3} />
+      ) : (
+        <button
+          type="button"
+          className="option-box-container"
+          onClick={handleSelect}
+        >
+          {option}
+        </button>
+      )}
     </>
   );
 }
